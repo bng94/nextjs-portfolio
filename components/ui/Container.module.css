@@ -1,0 +1,30 @@
+.container {
+  width: 1200px;
+  max-width: 100%;
+  padding: 0 5rem;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1400px) {
+  .container {
+    width: inherit;
+    margin: 0 150px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .container {
+    width: inherit;
+    padding: 0 2rem;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    margin: 0 75px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container {
+    margin: 0 auto;
+  }
+}

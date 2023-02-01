@@ -1,0 +1,31 @@
+.title {
+  margin-bottom: 0.5rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  line-height: 1.44;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+  color: var(--lightBlue);
+}
+.title:after {
+  content: " ";
+  display: block;
+  width: 100px;
+  height: 2px;
+  margin: 20px 0 20px;
+  background: #555;
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 2.1rem;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .title {
+    font-size: 1.6rem;
+  }
+}

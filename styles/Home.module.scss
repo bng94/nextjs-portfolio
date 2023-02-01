@@ -1,0 +1,27 @@
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: calc(100vh - 98px);
+  background: var(--blue);
+  h1 {
+    font-size: 150px;
+    font-weight: bold;
+  }
+  h4 {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .error {
+    h1 {
+      top: 27%;
+      font-size: 125px;
+    }
+    h4 {
+      font-size: 22px;
+    }
+  }
+}

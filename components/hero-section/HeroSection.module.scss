@@ -1,0 +1,91 @@
+.heroSection {
+  height: 100vh;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.5;
+  font-size: 1.7rem;
+  background-image: url("/static/landscape.jpg");
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-filter: grayscale(59%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(59%);
+  background-color: var(--blue);
+  overflow: hidden;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    top: -1rem;
+    position: relative;
+    padding: 0;
+    margin: 0;
+  }
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    margin: 5px 0;
+    font-size: 3.5rem;
+  }
+  h4 {
+    font-style: italic;
+    font-size: var(--largefs);
+  }
+
+  a {
+    margin-top: 15px;
+    background: var(--blue);
+    color: var(--white);
+    padding: 16px 24px;
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-block;
+    filter: grayscale(0%) !important;
+    &:hover {
+      background-color: var(--white);
+      color: var(--blue);
+      font-weight: 900;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .heroSection {
+    padding: 0 0 50px 0;
+    font-size: 1.2rem;
+    div {
+      position: relative;
+      margin-top: 28vh;
+    }
+    h1 {
+      font-size: 2.1rem;
+    }
+    h2 {
+      font-size: 2.9rem;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .heroSection {
+    div {
+      margin-top: 20vh;
+    }
+    h1 {
+      font-size: 1.7rem;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+    h4 {
+      font-size: var(--fs);
+    }
+  }
+}
