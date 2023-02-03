@@ -1,7 +1,7 @@
 import Head from "next/head";
-import { FULL_NAME } from "../components/constants/variables";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
+import Container from "../components/ui/Container";
 import classes from "../styles/Home.module.scss";
 
 export default function Error500(props) {
@@ -14,8 +14,10 @@ export default function Error500(props) {
       </Head>
       <Header disabled={true} />
       <div className={classes.error}>
-        <h1>500</h1>
-        <h4>Internal Server Error</h4>
+        <Container>
+          <h1>500</h1>
+          <h4>Internal Server Error</h4>
+        </Container>
       </div>
       <Footer />
     </>
