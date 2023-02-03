@@ -1,15 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 :root {
   --white: #dee7fd;
-  --black: #000610;
   --gray: #b8b6b6;
   --skyBlue: #7796cb;
   --lightBlue: #3f8bff;
-  --aliceBlue: #f0f8ff;
   --blue: #00173a;
   --opacityBlue: rgba(0, 22, 56, 0.7);
   --darkBlue: #0b1624;
-  --darkestBlue: #03070c;
   --colorGH: #6e5494;
   --colorLI: #0077b5;
   --gradientBlue: linear-gradient(
