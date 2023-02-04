@@ -3,7 +3,7 @@ import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
 import About from "../components/about/About";
 import Projects from "../components/projects/Projects";
-import { FULL_NAME } from "../components/constants/variables";
+import { FULL_NAME } from "../utils/variables";
 import Noteworthy from "../components/noteworthy/Noteworthy";
 import Contact from "../components/contact/Contact";
 import HeroSection from "../components/hero-section/HeroSection";

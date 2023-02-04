@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Container from "../ui/Container";
 import Title from "../ui/Title";
 import classes from "./Experiences.module.scss";
-import { MONTHS_ABBREVIATIONS } from "../constants/variables.js";
+import { MONTHS_ABBREVIATIONS } from "../../utils/variables.js";
 import Link from "next/link";
 
 /**

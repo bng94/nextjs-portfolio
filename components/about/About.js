@@ -1,4 +1,4 @@
-import { FULL_NAME } from "../constants/variables";
+import { FULL_NAME } from "../../utils/variables";
 import Container from "../ui/Container";
 import Subtitle from "../ui/Subtitle";
 import Title from "../ui/Title";

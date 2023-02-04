@@ -19,7 +19,6 @@ export const MONTHS_ABBREVIATIONS = [
   "Nov",
   "Dec",
 ];
-const dev = process.env.NODE_ENV !== "production";
-export const SERVER = dev
-  ? "http://localhost:3000"
-  : "https://nextjs-portfolio-bng94.vercel.app/";
+export const isSSR = typeof window === "undefined";
+export const QUERY = "(prefers-reduced-motion: no-preference)";
+export const isRenderingOnServer = typeof window === "undefined";

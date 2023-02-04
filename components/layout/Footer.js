@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FULL_NAME } from "../constants/variables";
+import { FULL_NAME } from "../../utils/variables";
 import classes from "./Footer.module.scss";
 
 function Footer(props) {

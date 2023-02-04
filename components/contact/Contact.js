@@ -1,10 +1,6 @@
 import Link from "next/link";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
-import {
-  LINKEDIN_URL,
-  EMAIL_ADDRESS,
-  GITHUB_URL,
-} from "../constants/variables";
+import { LINKEDIN_URL, EMAIL_ADDRESS, GITHUB_URL } from "../../utils/variables";
 import Container from "../ui/Container";
 import Subtitle from "../ui/Subtitle";
 import Title from "../ui/Title";

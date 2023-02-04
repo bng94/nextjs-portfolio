@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { LINKEDIN_URL, GITHUB_URL } from "../constants/variables";
-import { FULL_NAME } from "../constants/variables";
+import { FULL_NAME, LINKEDIN_URL, GITHUB_URL } from "../../utils/variables";
 import classes from "./Header.module.scss";
 
 /**
