@@ -1,19 +1,45 @@
+import { useEffect, useRef } from "react";
 import { FaGithub, FaLink } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 import Container from "../ui/Container";
 import Subtitle from "../ui/Subtitle";
 import Title from "../ui/Title";
 import classes from "./Projects.module.scss";
-import Image from "next/image";
+import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
+import { srConfig } from "../../utils/srConfig";
 
 function Projects(props) {
+  const revealContainer = useRef(null);
+  const revealProjects = useRef([]);
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      return;
+    }
+    async function animate() {
+      if (revealContainer.current) {
+        const sr = (await import("scrollreveal")).default;
+        sr().reveal(revealContainer.current, srConfig());
+        revealProjects.current.forEach((ref, i) =>
+          sr().reveal(ref, srConfig((i + 1) * 150))
+        );
+      }
+    }
+    animate();
+  }, []);
   return (
     <div id="projects" className={classes.projects}>
       <Container>
-        <Title>Projects</Title>
+        <Title reactRef={revealContainer}>Projects</Title>
         {props.projects.map((project, i) => {
           return (
-            <div key={i} className={classes.projectContainer}>
+            <div
+              key={i}
+              className={classes.projectContainer}
+              ref={(el) => (revealProjects.current[i] = el)}
+            >
               <Link
                 href={project.liveLink}
                 className={classes.imageContainer}

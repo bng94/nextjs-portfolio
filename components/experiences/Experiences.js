@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Container from "../ui/Container";
 import Title from "../ui/Title";
 import classes from "./Experiences.module.scss";
 import { MONTHS_ABBREVIATIONS } from "../../utils/variables.js";
 import Link from "next/link";
+import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
+import { srConfig } from "../../utils/srConfig";
 
 /**
  *
@@ -13,6 +15,9 @@ import Link from "next/link";
  */
 function Experiences(props) {
   const [activeTab, setActiveTab] = useState(0);
+  const revealContainer = useRef(null);
+  const revealContainer2 = useRef(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   const handleActiveTabClicked = (e, i) => {
     setActiveTab(i);
@@ -20,14 +25,25 @@ function Experiences(props) {
 
   useEffect(() => {
     setActiveTab(0);
+    if (prefersReducedMotion) {
+      return;
+    }
+    async function animate() {
+      if (revealContainer.current) {
+        const sr = (await import("scrollreveal")).default;
+        sr().reveal(revealContainer.current, srConfig());
+        sr().reveal(revealContainer2.current, srConfig(350));
+      }
+    }
+    animate();
   }, []);
 
   return (
     <div id="experiences" className={classes.experiences}>
       <Container>
-        <Title>Experiences & Background</Title>
+        <Title reactRef={revealContainer}>Experiences & Background</Title>
         <div>
-          <div className={classes.mainContainer}>
+          <div className={classes.mainContainer} ref={revealContainer2}>
             <div className={classes.tabsContainer}>
               {props.experiencesData?.map((experience, i) => {
                 return (

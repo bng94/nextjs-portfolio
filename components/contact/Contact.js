@@ -1,5 +1,8 @@
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
+import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
+import { srConfig } from "../../utils/srConfig";
 import { LINKEDIN_URL, EMAIL_ADDRESS, GITHUB_URL } from "../../utils/variables";
 import Container from "../ui/Container";
 import Subtitle from "../ui/Subtitle";
@@ -7,11 +10,27 @@ import Title from "../ui/Title";
 import classes from "./Contact.module.scss";
 
 function Contact() {
+  const revealContainer = useRef(null);
+  const revealContainer2 = useRef(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      return;
+    }
+    async function animate() {
+      if (revealContainer.current) {
+        const sr = (await import("scrollreveal")).default;
+        sr().reveal(revealContainer.current, srConfig());
+        sr().reveal(revealContainer2.current, srConfig(400));
+      }
+    }
+    animate();
+  }, []);
   return (
     <div id="contact" className={classes.contact}>
       <Container>
-        <Title>Contact</Title>
-        <div className={classes.wrapper}>
+        <Title reactRef={revealContainer}>Contact</Title>
+        <div className={classes.wrapper} ref={revealContainer2}>
           <div className={classes.detail}>
             <Subtitle>Get in touch</Subtitle>
             <p>

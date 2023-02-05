@@ -1,8 +1,11 @@
+import { useEffect, useRef } from "react";
 import { FULL_NAME } from "../../utils/variables";
 import Container from "../ui/Container";
 import Subtitle from "../ui/Subtitle";
 import Title from "../ui/Title";
 import classes from "./About.module.scss";
+import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
+import { srConfig } from "../../utils/sr";
 
 /**
  *
@@ -13,18 +16,30 @@ import classes from "./About.module.scss";
  * @returns
  */
 function About(props) {
-  const myLoader = ({ src }) => {
-    return src;
-  };
-
+  const revealContainer = useRef(null);
+  const revealContainer2 = useRef(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      return;
+    }
+    async function animate() {
+      if (revealContainer.current) {
+        const sr = (await import("scrollreveal")).default;
+        sr().reveal(revealContainer.current, srConfig());
+        sr().reveal(revealContainer2.current, srConfig(300));
+      }
+    }
+    animate();
+  }, []);
   return (
     <div id="about" className={classes.about}>
       <Container>
-        <div>
+        <div ref={revealContainer}>
           <Title>About Me</Title>
           <Subtitle classes={classes.subtitle}>{FULL_NAME}</Subtitle>
         </div>
-        <div className={classes.aboutContainer}>
+        <div className={classes.aboutContainer} ref={revealContainer2}>
           <div className={classes.imgContainer}>
             <img src={props.src} alt={FULL_NAME} />
           </div>

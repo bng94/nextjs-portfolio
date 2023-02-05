@@ -1,8 +1,3 @@
-import ScrollReveal from "scrollreveal";
-import { isSSR } from "./variables.js";
-
-export const sr = isSSR ? null : ScrollReveal();
-
 export const srConfig = (delay = 200, viewFactor = 0.25) => ({
   origin: "bottom",
   distance: "20px",

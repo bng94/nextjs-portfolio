@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { isRenderingOnServer, QUERY } from "../utils/variables";
 
 const getInitialState = () =>

@@ -19,6 +19,5 @@ export const MONTHS_ABBREVIATIONS = [
   "Nov",
   "Dec",
 ];
-export const isSSR = typeof window === "undefined";
 export const QUERY = "(prefers-reduced-motion: no-preference)";
 export const isRenderingOnServer = typeof window === "undefined";
