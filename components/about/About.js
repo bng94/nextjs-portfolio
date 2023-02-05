@@ -5,7 +5,7 @@ import Subtitle from "../ui/Subtitle";
 import Title from "../ui/Title";
 import classes from "./About.module.scss";
 import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
-import { srConfig } from "../../utils/sr";
+import { srConfig } from "../../utils/srConfig";
 
 /**
  *

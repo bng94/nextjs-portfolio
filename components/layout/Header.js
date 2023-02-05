@@ -45,7 +45,7 @@ function Header(props) {
         <div className={classes.navBarContainer}>
           <div className={classes.mainNav}>
             <div className={classes.logo}>
-              <Link href={props.disabled ? "/" : "#"} onClick={onLinkClicked}>
+              <Link href="/" onClick={onLinkClicked}>
                 {FULL_NAME}
               </Link>
             </div>
