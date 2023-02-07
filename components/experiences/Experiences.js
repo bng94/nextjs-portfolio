@@ -41,7 +41,7 @@ function Experiences(props) {
   return (
     <div id="experiences" className={classes.experiences}>
       <Container>
-        <Title reactRef={revealContainer}>Experiences & Background</Title>
+        <Title reactRef={revealContainer}>Experiences</Title>
         <div>
           <div className={classes.mainContainer} ref={revealContainer2}>
             <div className={classes.tabsContainer}>

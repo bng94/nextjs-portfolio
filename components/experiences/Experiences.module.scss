@@ -88,19 +88,18 @@
 
   transition: 0.22s cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s;
   &:hover {
-    background-color: var(--gray);
+    color: var(--lightBlue);
   }
   &:hover:active,
   &:hover:focus {
-    background-color: var(--skyBlue);
-    color: var(--white);
+    color: var(--lightBlue);
     outline: 0;
   }
 }
 
 .activeButton {
   background-color: var(--darkBlue);
-  color: var(--white);
+  color: var(--lightBlue);
   outline: 0;
 }
 
