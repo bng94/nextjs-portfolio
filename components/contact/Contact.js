@@ -62,10 +62,7 @@ function Contact() {
             </div>
           </div>
           <div className={classes.imgWrapper}>
-            <img
-              src="https://ngbrandon.com/images/m_chances.svg"
-              alt="contact"
-            />
+            <img src="/static/m_chances.svg" alt="contact" />
           </div>
         </div>
       </Container>
