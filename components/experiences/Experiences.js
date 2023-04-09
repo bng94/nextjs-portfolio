@@ -64,22 +64,27 @@ function Experiences(props) {
             </div>
             <div className={classes.tabContentContainer}>
               {props.experiencesData.map((experience, i) => {
+                if (!experience.startDate) return;
+
                 const styleClasses =
                   activeTab === i
                     ? `${classes.tabContent} ${classes.active}`
                     : classes.tabContent;
 
                 const startDate = new Date(experience.startDate);
-                const endDate = new Date(experience.endDate);
                 const start_date =
                   MONTHS_ABBREVIATIONS[startDate.getMonth()] +
                   " " +
                   startDate.getFullYear();
 
-                const end_date =
-                  MONTHS_ABBREVIATIONS[endDate.getMonth()] +
-                  " " +
-                  endDate.getFullYear();
+                let end_date = "Present";
+                if (experience.endDate) {
+                  const endDate = new Date(experience.endDate);
+                  end_date =
+                    MONTHS_ABBREVIATIONS[endDate.getMonth()] +
+                    " " +
+                    endDate.getFullYear();
+                }
 
                 return (
                   <div className={styleClasses} key={i}>
@@ -96,13 +101,9 @@ function Experiences(props) {
                       </span>
                     </h3>
                     <p className={classes.range}>
-                      {experience.startDate &&
-                      experience.endDate &&
-                      experience.startDate !== experience.endDate
+                      {start_date !== end_date
                         ? `${start_date} - ${end_date}`
-                        : startDate === endDate
-                        ? start_date
-                        : end_date}
+                        : experience.startDate}
                     </p>
                     <div>
                       <ul>
