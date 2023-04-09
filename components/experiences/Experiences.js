@@ -103,7 +103,7 @@ function Experiences(props) {
                     <p className={classes.range}>
                       {start_date !== end_date
                         ? `${start_date} - ${end_date}`
-                        : experience.startDate}
+                        : start_date}
                     </p>
                     <div>
                       <ul>
