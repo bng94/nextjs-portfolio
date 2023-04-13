@@ -10,11 +10,14 @@ import { srConfig } from "../../utils/srConfig";
 /**
  *
  * @param {Object} props
- * @param {Array<Object>} props.experiencesData
+ * @param {Array<Object>} data
  * @returns
  */
 function Experiences(props) {
   const [activeTab, setActiveTab] = useState(0);
+  const data = props.experiencesData.sort(
+    (a, b) => new Date(b.startDate) - new Date(a.startDate)
+  );
   const revealContainer = useRef(null);
   const revealContainer2 = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -45,7 +48,7 @@ function Experiences(props) {
         <div>
           <div className={classes.mainContainer} ref={revealContainer2}>
             <div className={classes.tabsContainer}>
-              {props.experiencesData?.map((experience, i) => {
+              {data?.map((experience, i) => {
                 return (
                   <button
                     key={i}
@@ -63,7 +66,7 @@ function Experiences(props) {
               })}
             </div>
             <div className={classes.tabContentContainer}>
-              {props.experiencesData.map((experience, i) => {
+              {data.map((experience, i) => {
                 if (!experience.startDate) return;
 
                 const styleClasses =
