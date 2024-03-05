@@ -43,7 +43,9 @@ function Noteworthy(props) {
                 ref={(el) => (revealProjects.current[i] = el)}
               >
                 <h2>{project.title}</h2>
-                <p>{project.description}</p>
+                <a href={project.codeLink}>
+                  <p>{project.description}</p>
+                </a>
                 <div className={classes.techTags}>
                   {project.tags.map((tag, i) => (
                     <span key={i}>{tag}</span>
