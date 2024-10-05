@@ -66,7 +66,7 @@ function Experiences(props) {
               })}
             </div>
             <div className={classes.tabContentContainer}>
-              {data.map((experience, i) => {
+              {data?.map((experience, i) => {
                 if (!experience.startDate) return;
 
                 const styleClasses =
@@ -106,7 +106,9 @@ function Experiences(props) {
                     <p className={classes.range}>
                       {start_date !== end_date
                         ? `${start_date} - ${end_date}`
-                        : start_date}
+                        : start_date === end_date
+                        ? start_date
+                        : end_date}
                     </p>
                     <div>
                       <ul>
