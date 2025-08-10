@@ -1,17 +1,21 @@
+"use client";
 import { useEffect, useRef } from "react";
-import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
-import { srConfig } from "../../utils/srConfig";
-import Container from "../ui/Container";
-import Title from "../ui/Title";
-import classes from "./Noteworthy.module.scss";
+import styles from "./Noteworthy.module.scss";
+import usePrefersReducedMotion from "hooks/usePrefersReducedMotion";
+import { srConfig } from "@utils/srConfig";
+import Container from "@components/ui/container";
+import Title from "@components/ui/title";
 
-/**
- *
- * @param {Object} props
- * @param {Array} props.data data for noteworthy projects
- * @returns
- */
-function Noteworthy(props) {
+interface NoteworthyProps {
+  data: {
+    title: string;
+    description: string;
+    codeLink: string;
+    tags: string[];
+  }[];
+}
+
+const Noteworthy = ({ data }: NoteworthyProps) => {
   const revealContainer = useRef(null);
   const revealProjects = useRef([]);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -31,22 +35,22 @@ function Noteworthy(props) {
     animate();
   }, [prefersReducedMotion]);
   return (
-    <div className={classes.noteworthy}>
+    <div className={styles.noteworthy}>
       <Container>
         <Title reactRef={revealContainer}>Noteworthy Projects</Title>
-        <div className={classes.noteworthyContainer}>
-          {props.data?.map((project, i) => {
+        <div className={styles.noteworthyContainer}>
+          {data?.map((project, i) => {
             return (
               <div
                 key={i}
-                className={classes.noteworthyProject}
+                className={styles.noteworthyProject}
                 ref={(el) => (revealProjects.current[i] = el)}
               >
                 <h2>{project.title}</h2>
                 <a href={project.codeLink}>
                   <p>{project.description}</p>
                 </a>
-                <div className={classes.techTags}>
+                <div className={styles.techTags}>
                   {project.tags.map((tag, i) => (
                     <span key={i}>{tag}</span>
                   ))}
@@ -58,6 +62,6 @@ function Noteworthy(props) {
       </Container>
     </div>
   );
-}
+};
 
 export default Noteworthy;
