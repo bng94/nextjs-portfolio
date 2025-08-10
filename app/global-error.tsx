@@ -1,17 +1,24 @@
-import Head from "next/head";
+"use client";
+import { useEffect } from "react";
 import styles from "../styles/Home.module.scss";
 import Header from "@components/layout/header";
 import Container from "@components/ui/container";
 import Footer from "@components/layout/footer";
+import { Metadata } from "next";
 
-export default function Error500() {
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  useEffect(() => {
+    // Log the error to an error reporting service
+    console.error("Error:", error);
+  }, [error]);
   return (
     <>
-      <Head>
-        <title>Brandon Bing Ng | Internal Server Error</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Header disableLinks={true} />
       <div className={styles.error}>
         <Container>

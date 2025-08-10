@@ -10,36 +10,6 @@ import React from "react";
 import { SERVER_URL } from "../config/config";
 import axios from "axios";
 
-interface PageProps {
-  data: {
-    role: string;
-    src: string;
-    aboutInfo: string[];
-    technologies: string[];
-    experiences: {
-      title: string;
-      company: string;
-      url: string;
-      startDate: string;
-      endDate: string;
-      description: string[];
-    }[];
-    projects: {
-      title: string;
-      description: string;
-      liveLink: string;
-      codeLink: string;
-      tags: string[];
-    }[];
-    noteworthy: {
-      title: string;
-      description: string;
-      codeLink: string;
-      tags: string[];
-    }[];
-  };
-}
-
 const Page = async () => {
   const response = await axios.get(`${SERVER_URL}/api/v1`);
   const data = response.data.data;

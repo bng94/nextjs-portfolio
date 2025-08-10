@@ -1,4 +1,10 @@
 "use client";
+import { useEffect } from "react";
+import styles from "../styles/Home.module.scss";
+import Header from "@components/layout/header";
+import Container from "@components/ui/container";
+import Footer from "@components/layout/footer";
+import { Metadata } from "next";
 
 export default function Error({
   error,
@@ -7,11 +13,20 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  useEffect(() => {
+    // Log the error to an error reporting service
+    console.error("Error:", error);
+  }, [error]);
   return (
-    <div className="error-state">
-      <h1>Something went wrong</h1>
-      <p>Unable to load portfolio data.</p>
-      <button onClick={() => reset()}>Try again</button>
-    </div>
+    <>
+      <Header disableLinks={true} />
+      <div className={styles.error}>
+        <Container>
+          <h1>{500}</h1>
+          <h4>Internal Server Error</h4>
+        </Container>
+      </div>
+      <Footer />
+    </>
   );
 }
