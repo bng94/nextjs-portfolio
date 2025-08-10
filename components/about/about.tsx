@@ -7,7 +7,6 @@ import Container from "@components/ui/container";
 import Subtitle from "@components/ui/subtitle";
 import { FULL_NAME } from "@utils/variables";
 import Title from "@components/ui/title";
-import ScrollReveal from "scrollreveal";
 
 interface AboutProps {
   src: string;
@@ -24,14 +23,18 @@ const About = ({ src, aboutInfo, technologies }: AboutProps) => {
       return;
     }
     async function animate() {
-      if (revealContainer.current && revealContainer2.current) {
-        const sr = ScrollReveal();
-        sr().reveal(revealContainer.current, srConfig());
-        sr().reveal(revealContainer2.current, srConfig(300));
+      if (
+        typeof window !== "undefined" &&
+        revealContainer.current &&
+        revealContainer2.current
+      ) {
+        const ScrollReveal = (await import("scrollreveal")).default;
+        ScrollReveal().reveal(revealContainer.current, srConfig());
+        ScrollReveal().reveal(revealContainer2.current, srConfig(300));
       }
     }
     animate();
-  }, []);
+  }, [prefersReducedMotion]);
   return (
     <div id="about" className={styles.about}>
       <Container>

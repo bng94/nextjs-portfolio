@@ -5,7 +5,6 @@ import usePrefersReducedMotion from "hooks/usePrefersReducedMotion";
 import { srConfig } from "@utils/srConfig";
 import Container from "@components/ui/container";
 import Title from "@components/ui/title";
-import ScrollReveal from "scrollreveal";
 import { NoteworthyProject } from "types";
 
 interface NoteworthyProps {
@@ -22,11 +21,11 @@ const Noteworthy = ({ data }: NoteworthyProps) => {
     }
     async function animate() {
       if (revealContainer.current) {
-        const sr = ScrollReveal();
-        sr().reveal(revealContainer.current, srConfig());
+        const ScrollReveal = (await import("scrollreveal")).default;
+        ScrollReveal().reveal(revealContainer.current, srConfig());
         revealProjects.current.forEach((ref, i) => {
           if (ref) {
-            sr().reveal(ref, srConfig((i + 1) * 250));
+            ScrollReveal().reveal(ref, srConfig((i + 1) * 250));
           }
         });
       }

@@ -8,7 +8,6 @@ import Title from "@components/ui/title";
 import Link from "next/link";
 import Subtitle from "@components/ui/subtitle";
 import { FaGithub, FaLink } from "react-icons/fa";
-import ScrollReveal from "scrollreveal";
 import { Project } from "types";
 
 interface ProjectsProps {
@@ -26,11 +25,11 @@ const Projects = ({ projects }: ProjectsProps) => {
     }
     async function animate() {
       if (revealContainer.current) {
-        const sr = ScrollReveal();
-        sr().reveal(revealContainer.current, srConfig());
+        const ScrollReveal = (await import("scrollreveal")).default;
+        ScrollReveal().reveal(revealContainer.current, srConfig());
         revealProjects.current.forEach((ref, i) => {
           if (ref) {
-            sr().reveal(ref, srConfig((i + 1) * 150));
+            ScrollReveal().reveal(ref, srConfig((i + 1) * 150));
           }
         });
       }

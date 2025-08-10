@@ -10,7 +10,6 @@ import Container from "@components/ui/container";
 import Title from "@components/ui/title";
 import { srConfig } from "@utils/srConfig";
 import usePrefersReducedMotion from "hooks/usePrefersReducedMotion";
-import ScrollReveal from "scrollreveal";
 
 const Contact = () => {
   const revealContainer = useRef(null);
@@ -22,9 +21,9 @@ const Contact = () => {
     }
     async function animate() {
       if (revealContainer.current && revealContainer2.current) {
-        const sr = ScrollReveal();
-        sr().reveal(revealContainer.current, srConfig());
-        sr().reveal(revealContainer2.current, srConfig(300));
+        const ScrollReveal = (await import("scrollreveal")).default;
+        ScrollReveal().reveal(revealContainer.current, srConfig());
+        ScrollReveal().reveal(revealContainer2.current, srConfig(300));
       }
     }
     animate();

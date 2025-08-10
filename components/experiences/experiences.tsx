@@ -7,7 +7,6 @@ import Title from "@components/ui/title";
 import { MONTHS_ABBREVIATIONS } from "@utils/variables";
 import { srConfig } from "@utils/srConfig";
 import Link from "next/link";
-import ScrollReveal from "scrollreveal";
 import { Experience } from "types";
 
 interface ExperiencesProps {
@@ -34,9 +33,9 @@ const Experiences = ({ experiencesData }: ExperiencesProps) => {
     }
     async function animate() {
       if (revealContainer.current && revealContainer2.current) {
-        const sr = ScrollReveal();
-        sr().reveal(revealContainer.current, srConfig());
-        sr().reveal(revealContainer2.current, srConfig(300));
+        const ScrollReveal = (await import("scrollreveal")).default;
+        ScrollReveal().reveal(revealContainer.current, srConfig());
+        ScrollReveal().reveal(revealContainer2.current, srConfig(300));
       }
     }
     animate();
