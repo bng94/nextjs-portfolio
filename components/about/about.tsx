@@ -23,11 +23,7 @@ const About = ({ src, aboutInfo, technologies }: AboutProps) => {
       return;
     }
     async function animate() {
-      if (
-        typeof window !== "undefined" &&
-        revealContainer.current &&
-        revealContainer2.current
-      ) {
+      if (revealContainer.current && revealContainer2.current) {
         const ScrollReveal = (await import("scrollreveal")).default;
         ScrollReveal().reveal(revealContainer.current, srConfig());
         ScrollReveal().reveal(revealContainer2.current, srConfig(300));

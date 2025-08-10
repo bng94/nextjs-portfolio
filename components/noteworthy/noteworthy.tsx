@@ -26,6 +26,7 @@ const Noteworthy = ({ data }: NoteworthyProps) => {
         revealProjects.current.forEach((ref, i) => {
           if (ref) {
             ScrollReveal().reveal(ref, srConfig((i + 1) * 250));
+            ScrollReveal().reveal(ref, srConfig((i + 1) * 250));
           }
         });
       }
