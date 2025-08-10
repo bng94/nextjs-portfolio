@@ -7,27 +7,17 @@ import Title from "@components/ui/title";
 import { MONTHS_ABBREVIATIONS } from "@utils/variables";
 import { srConfig } from "@utils/srConfig";
 import Link from "next/link";
+import ScrollReveal from "scrollreveal";
+import { Experience } from "types";
 
 interface ExperiencesProps {
-  experiencesData: {
-    title: string;
-    company: string;
-    url: string;
-    startDate: string;
-    endDate?: string;
-    description: string[];
-  }[];
+  experiencesData: Experience[];
 }
 
 const Experiences = ({ experiencesData }: ExperiencesProps) => {
   const [activeTab, setActiveTab] = useState(0);
-<<<<<<<< HEAD:components/experiences/experiences.tsx
   const data = experiencesData.sort(
     (a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
-========
-  const data = props.experiencesData?.sort(
-    (a, b) => new Date(b.startDate) - new Date(a.startDate)
->>>>>>>> 9d0c12f6c133f938aaca6870212aaa8c382cfd86:components/experiences/Experiences.js
   );
   const revealContainer = useRef(null);
   const revealContainer2 = useRef(null);
@@ -43,10 +33,10 @@ const Experiences = ({ experiencesData }: ExperiencesProps) => {
       return;
     }
     async function animate() {
-      if (revealContainer.current) {
-        const sr = (await import("scrollreveal")).default;
+      if (revealContainer.current && revealContainer2.current) {
+        const sr = ScrollReveal();
         sr().reveal(revealContainer.current, srConfig());
-        sr().reveal(revealContainer2.current, srConfig(350));
+        sr().reveal(revealContainer2.current, srConfig(300));
       }
     }
     animate();

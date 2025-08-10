@@ -1,9 +1,6 @@
 "use client";
-<<<<<<<< HEAD:components/projects/projects.tsx
 import Container from "@components/ui/container";
 import styles from "./Projects.module.scss";
-========
->>>>>>>> 9d0c12f6c133f938aaca6870212aaa8c382cfd86:components/projects/Projects.js
 import { useEffect, useRef } from "react";
 import usePrefersReducedMotion from "hooks/usePrefersReducedMotion";
 import { srConfig } from "../../utils/srConfig";
@@ -11,20 +8,16 @@ import Title from "@components/ui/title";
 import Link from "next/link";
 import Subtitle from "@components/ui/subtitle";
 import { FaGithub, FaLink } from "react-icons/fa";
+import ScrollReveal from "scrollreveal";
+import { Project } from "types";
 
 interface ProjectsProps {
-  projects: {
-    title: string;
-    description: string;
-    liveLink: string;
-    codeLink: string;
-    tags: string[];
-  }[];
+  projects: Project[];
 }
 
 const Projects = ({ projects }: ProjectsProps) => {
   const revealContainer = useRef(null);
-  const revealProjects = useRef([]);
+  const revealProjects = useRef<Array<HTMLDivElement | null>>([]);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
@@ -33,11 +26,13 @@ const Projects = ({ projects }: ProjectsProps) => {
     }
     async function animate() {
       if (revealContainer.current) {
-        const sr = (await import("scrollreveal")).default;
+        const sr = ScrollReveal();
         sr().reveal(revealContainer.current, srConfig());
-        revealProjects.current.forEach((ref, i) =>
-          sr().reveal(ref, srConfig((i + 1) * 150))
-        );
+        revealProjects.current.forEach((ref, i) => {
+          if (ref) {
+            sr().reveal(ref, srConfig((i + 1) * 150));
+          }
+        });
       }
     }
     animate();
@@ -51,7 +46,9 @@ const Projects = ({ projects }: ProjectsProps) => {
             <div
               key={i}
               className={styles.projectContainer}
-              ref={(el) => (revealProjects.current[i] = el)}
+              ref={(el) => {
+                revealProjects.current[i] = el;
+              }}
             >
               <Link
                 href={project.liveLink}

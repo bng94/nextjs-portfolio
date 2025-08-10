@@ -7,6 +7,7 @@ import Container from "@components/ui/container";
 import Subtitle from "@components/ui/subtitle";
 import { FULL_NAME } from "@utils/variables";
 import Title from "@components/ui/title";
+import ScrollReveal from "scrollreveal";
 
 interface AboutProps {
   src: string;
@@ -23,8 +24,8 @@ const About = ({ src, aboutInfo, technologies }: AboutProps) => {
       return;
     }
     async function animate() {
-      if (revealContainer.current) {
-        const sr = (await import("scrollreveal")).default;
+      if (revealContainer.current && revealContainer2.current) {
+        const sr = ScrollReveal();
         sr().reveal(revealContainer.current, srConfig());
         sr().reveal(revealContainer2.current, srConfig(300));
       }

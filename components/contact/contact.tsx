@@ -1,18 +1,16 @@
 "use client";
-<<<<<<<< HEAD:components/contact/contact.tsx
-import Container from "@components/ui/container";
-import Title from "@components/ui/title";
-import { srConfig } from "@utils/srConfig";
-import usePrefersReducedMotion from "hooks/usePrefersReducedMotion";
-========
-import Link from "next/link";
->>>>>>>> 9d0c12f6c133f938aaca6870212aaa8c382cfd86:components/contact/Contact.js
+
 import { useEffect, useRef } from "react";
 import styles from "./Contact.module.scss";
 import Subtitle from "@components/ui/subtitle";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
 import { EMAIL_ADDRESS, GITHUB_URL, LINKEDIN_URL } from "@utils/variables";
+import Container from "@components/ui/container";
+import Title from "@components/ui/title";
+import { srConfig } from "@utils/srConfig";
+import usePrefersReducedMotion from "hooks/usePrefersReducedMotion";
+import ScrollReveal from "scrollreveal";
 
 const Contact = () => {
   const revealContainer = useRef(null);
@@ -23,10 +21,10 @@ const Contact = () => {
       return;
     }
     async function animate() {
-      if (revealContainer.current) {
-        const sr = (await import("scrollreveal")).default;
+      if (revealContainer.current && revealContainer2.current) {
+        const sr = ScrollReveal();
         sr().reveal(revealContainer.current, srConfig());
-        sr().reveal(revealContainer2.current, srConfig(400));
+        sr().reveal(revealContainer2.current, srConfig(300));
       }
     }
     animate();
