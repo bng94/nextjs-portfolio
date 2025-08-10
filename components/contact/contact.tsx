@@ -1,8 +1,12 @@
 "use client";
+<<<<<<<< HEAD:components/contact/contact.tsx
 import Container from "@components/ui/container";
 import Title from "@components/ui/title";
 import { srConfig } from "@utils/srConfig";
 import usePrefersReducedMotion from "hooks/usePrefersReducedMotion";
+========
+import Link from "next/link";
+>>>>>>>> 9d0c12f6c133f938aaca6870212aaa8c382cfd86:components/contact/Contact.js
 import { useEffect, useRef } from "react";
 import styles from "./Contact.module.scss";
 import Subtitle from "@components/ui/subtitle";

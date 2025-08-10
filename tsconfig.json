@@ -19,24 +19,15 @@
     "plugins": [
       {
         "name": "next/tsconfig"
-      },
-      {
-        "name": "next"
       }
     ],
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "strictNullChecks": true,
     "target": "ES2020",
-    "baseUrl": ".",
+    "baseUrl": ".", 
     "paths": {
-      "@components/*": [
-        "components/*"
-      ],
-      "@utils/*": [
-        "utils/*"
-      ]
+      "@components/*": ["components/*"], 
+      "@utils/*": ["utils/*"]
     }
   },
   "include": [
@@ -44,7 +35,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/_app.js", "pages/_document.js"  ],
+  ],
   "exclude": [
     "node_modules"
   ]

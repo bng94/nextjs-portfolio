@@ -1,6 +1,9 @@
 "use client";
+<<<<<<<< HEAD:components/projects/projects.tsx
 import Container from "@components/ui/container";
 import styles from "./Projects.module.scss";
+========
+>>>>>>>> 9d0c12f6c133f938aaca6870212aaa8c382cfd86:components/projects/Projects.js
 import { useEffect, useRef } from "react";
 import usePrefersReducedMotion from "hooks/usePrefersReducedMotion";
 import { srConfig } from "../../utils/srConfig";

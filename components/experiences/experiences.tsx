@@ -21,8 +21,13 @@ interface ExperiencesProps {
 
 const Experiences = ({ experiencesData }: ExperiencesProps) => {
   const [activeTab, setActiveTab] = useState(0);
+<<<<<<<< HEAD:components/experiences/experiences.tsx
   const data = experiencesData.sort(
     (a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
+========
+  const data = props.experiencesData?.sort(
+    (a, b) => new Date(b.startDate) - new Date(a.startDate)
+>>>>>>>> 9d0c12f6c133f938aaca6870212aaa8c382cfd86:components/experiences/Experiences.js
   );
   const revealContainer = useRef(null);
   const revealContainer2 = useRef(null);
