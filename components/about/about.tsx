@@ -1,22 +1,20 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { FULL_NAME } from "../../utils/variables";
-import Container from "../ui/Container";
-import Subtitle from "../ui/Subtitle";
-import Title from "../ui/Title";
-import classes from "./About.module.scss";
+import styles from "./About.module.scss";
 import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
 import { srConfig } from "../../utils/srConfig";
+import Container from "@components/ui/container";
+import Subtitle from "@components/ui/subtitle";
+import { FULL_NAME } from "@utils/variables";
+import Title from "@components/ui/title";
 
-/**
- *
- * @param {Object} props
- * @param {String} props.src Profile Image Source
- * @param {Array<String>} props.aboutInfo Array of String of Bio Info
- * @param {Array<String>} props.technologies Array of String of Technologies currently using
- * @returns
- */
-function About(props) {
+interface AboutProps {
+  src: string;
+  aboutInfo: string[];
+  technologies: string[];
+}
+
+const About = ({ src, aboutInfo, technologies }: AboutProps) => {
   const revealContainer = useRef(null);
   const revealContainer2 = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -34,23 +32,23 @@ function About(props) {
     animate();
   }, []);
   return (
-    <div id="about" className={classes.about}>
+    <div id="about" className={styles.about}>
       <Container>
         <div ref={revealContainer}>
           <Title>About Me</Title>
-          <Subtitle classes={classes.subtitle}>{FULL_NAME}</Subtitle>
+          <Subtitle className={styles.subtitle}>{FULL_NAME}</Subtitle>
         </div>
-        <div className={classes.aboutContainer} ref={revealContainer2}>
-          <div className={classes.imgContainer}>
-            <img src={props.src} alt={FULL_NAME} />
+        <div className={styles.aboutContainer} ref={revealContainer2}>
+          <div className={styles.imgContainer}>
+            <img src={src} alt={FULL_NAME} />
           </div>
           <div>
-            {props.aboutInfo?.map((data, i) => (
+            {aboutInfo?.map((data, i) => (
               <p key={i}>{data}</p>
             ))}
             <p>Here are a few technologies I`ve been working with recently:</p>
-            <ul className={classes.technologiesList}>
-              {props.technologies?.map((tech, i) => (
+            <ul className={styles.technologiesList}>
+              {technologies?.map((tech, i) => (
                 <li key={i}>{tech}</li>
               ))}
             </ul>
@@ -59,6 +57,6 @@ function About(props) {
       </Container>
     </div>
   );
-}
+};
 
 export default About;

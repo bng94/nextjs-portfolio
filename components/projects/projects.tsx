@@ -1,16 +1,25 @@
 "use client";
+import Container from "@components/ui/container";
+import styles from "./Projects.module.scss";
 import { useEffect, useRef } from "react";
-import { FaGithub, FaLink } from "react-icons/fa";
-import Link from "next/link";
-import Image from "next/image";
-import Container from "../ui/Container";
-import Subtitle from "../ui/Subtitle";
-import Title from "../ui/Title";
-import classes from "./Projects.module.scss";
-import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
+import usePrefersReducedMotion from "hooks/usePrefersReducedMotion";
 import { srConfig } from "../../utils/srConfig";
+import Title from "@components/ui/title";
+import Link from "next/link";
+import Subtitle from "@components/ui/subtitle";
+import { FaGithub, FaLink } from "react-icons/fa";
 
-function Projects(props) {
+interface ProjectsProps {
+  projects: {
+    title: string;
+    description: string;
+    liveLink: string;
+    codeLink: string;
+    tags: string[];
+  }[];
+}
+
+const Projects = ({ projects }: ProjectsProps) => {
   const revealContainer = useRef(null);
   const revealProjects = useRef([]);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -31,33 +40,33 @@ function Projects(props) {
     animate();
   }, []);
   return (
-    <div id="projects" className={classes.projects}>
+    <div id="projects" className={styles.projects}>
       <Container>
         <Title reactRef={revealContainer}>Projects</Title>
-        {props.projects.map((project, i) => {
+        {projects.map((project, i) => {
           return (
             <div
               key={i}
-              className={classes.projectContainer}
+              className={styles.projectContainer}
               ref={(el) => (revealProjects.current[i] = el)}
             >
               <Link
                 href={project.liveLink}
-                className={classes.imageContainer}
+                className={styles.imageContainer}
                 target="_blank"
                 rel="noreferrer"
               >
                 <img src={project.image} alt={project.title} />
               </Link>
-              <div className={classes.description}>
+              <div className={styles.description}>
                 <Subtitle>{project.title}</Subtitle>
-                <div className={classes.techTags}>
+                <div className={styles.techTags}>
                   {project.tags?.map((tag, i) => {
                     return <span key={i}>{tag}</span>;
                   })}
                 </div>
                 <p>{project.description}</p>
-                <div className={classes.link}>
+                <div className={styles.link}>
                   <Link
                     href={project.codeLink}
                     target="_blank"
@@ -82,6 +91,6 @@ function Projects(props) {
       </Container>
     </div>
   );
-}
+};
 
 export default Projects;
