@@ -7,7 +7,7 @@ import Header from "@components/layout/header";
 import Noteworthy from "@components/noteworthy/noteworthy";
 import Projects from "@components/projects/projects";
 import React from "react";
-import { SERVER_URL } from "../../config/config";
+import { SERVER_URL } from "../config/config";
 import axios from "axios";
 
 interface PageProps {
@@ -42,9 +42,8 @@ interface PageProps {
 
 const Page = async () => {
   const response = await axios.get(`${SERVER_URL}/api/v1`);
-  const data = response.data;
+  const data = response.data.data;
 
-  console.log(data);
   if (!data) {
     throw new Error("Internal Server Error - No data available");
   }

@@ -1,8 +1,4 @@
 "use client";
-<<<<<<<< HEAD:components/layout/header.tsx
-========
-import Link from "next/link";
->>>>>>>> 9d0c12f6c133f938aaca6870212aaa8c382cfd86:components/layout/Header.js
 import { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import Link from "next/link";
