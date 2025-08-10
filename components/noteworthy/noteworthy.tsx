@@ -22,11 +22,10 @@ const Noteworthy = ({ data }: NoteworthyProps) => {
     }
     async function animate() {
       if (revealContainer.current) {
-        const sr = ScrollReveal();
-        sr().reveal(revealContainer.current, srConfig());
+        ScrollReveal().reveal(revealContainer.current, srConfig());
         revealProjects.current.forEach((ref, i) => {
           if (ref) {
-            sr().reveal(ref, srConfig((i + 1) * 250));
+            ScrollReveal().reveal(ref, srConfig((i + 1) * 250));
           }
         });
       }

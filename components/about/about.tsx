@@ -25,9 +25,8 @@ const About = ({ src, aboutInfo, technologies }: AboutProps) => {
     }
     async function animate() {
       if (revealContainer.current && revealContainer2.current) {
-        const sr = ScrollReveal();
-        sr().reveal(revealContainer.current, srConfig());
-        sr().reveal(revealContainer2.current, srConfig(300));
+        ScrollReveal().reveal(revealContainer.current, srConfig());
+        ScrollReveal().reveal(revealContainer2.current, srConfig(300));
       }
     }
     animate();

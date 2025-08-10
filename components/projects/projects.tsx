@@ -26,11 +26,10 @@ const Projects = ({ projects }: ProjectsProps) => {
     }
     async function animate() {
       if (revealContainer.current) {
-        const sr = ScrollReveal();
-        sr().reveal(revealContainer.current, srConfig());
+        ScrollReveal().reveal(revealContainer.current, srConfig());
         revealProjects.current.forEach((ref, i) => {
           if (ref) {
-            sr().reveal(ref, srConfig((i + 1) * 150));
+            ScrollReveal().reveal(ref, srConfig((i + 1) * 150));
           }
         });
       }

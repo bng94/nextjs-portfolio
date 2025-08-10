@@ -14,11 +14,12 @@ export const metadata: Metadata = {
   ],
   description:
     "Brandon Bing Ng is a software engineer with a Master of Science Degree in Software Engineering and a Bachelor of Science degree in Computer Science who specializes in developing websites.",
-  viewport: "width=device-width, initial-scale=1",
   icons: {
     icon: "/favicon.ico",
   },
 };
+
+export const viewport = "width=device-width, initial-scale=1";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
