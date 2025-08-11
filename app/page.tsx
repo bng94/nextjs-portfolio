@@ -8,11 +8,18 @@ import Noteworthy from "@components/noteworthy/noteworthy";
 import Projects from "@components/projects/projects";
 import { SERVER_URL } from "@config/config";
 import React from "react";
-import axios from "axios";
+
+const getProfileData = async () => {
+  const response = await fetch(`${SERVER_URL}/api/v1`, {
+    next: { revalidate: 60 },
+  });
+  const res = await response.json();
+
+  return res.data;
+};
 
 const Page = async () => {
-  const response = await axios.get(`${SERVER_URL}/api/v1`);
-  const data = response.data.data;
+  const data = await getProfileData();
 
   if (!data) {
     throw new Error("Internal Server Error - No data available");

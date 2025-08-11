@@ -46,7 +46,7 @@ const About = ({ src, aboutInfo, technologies }: AboutProps) => {
             {aboutInfo?.map((data, i) => {
               return <p key={i}>{data}</p>;
             })}
-            <p>Here are a few technologies I`ve been working with recently:</p>
+            <p>Recent tech stack:</p>
             <ul className={styles.technologiesList}>
               {technologies?.map((tech, i) => {
                 return <li key={i}>{tech}</li>;
