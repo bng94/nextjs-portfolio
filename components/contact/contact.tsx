@@ -1,15 +1,17 @@
-import Link from "next/link";
-import { useEffect, useRef } from "react";
-import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
-import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
-import { srConfig } from "../../utils/srConfig";
-import { LINKEDIN_URL, EMAIL_ADDRESS, GITHUB_URL } from "../../utils/variables";
-import Container from "../ui/Container";
-import Subtitle from "../ui/Subtitle";
-import Title from "../ui/Title";
-import classes from "./Contact.module.scss";
+"use client";
 
-function Contact() {
+import { useEffect, useRef } from "react";
+import styles from "./Contact.module.scss";
+import Subtitle from "@components/ui/subtitle";
+import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
+import Link from "next/link";
+import { EMAIL_ADDRESS, GITHUB_URL, LINKEDIN_URL } from "@utils/variables";
+import Container from "@components/ui/container";
+import Title from "@components/ui/title";
+import { srConfig } from "@utils/srConfig";
+import usePrefersReducedMotion from "hooks/usePrefersReducedMotion";
+
+const Contact = () => {
   const revealContainer = useRef(null);
   const revealContainer2 = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -18,20 +20,21 @@ function Contact() {
       return;
     }
     async function animate() {
-      if (revealContainer.current) {
-        const sr = (await import("scrollreveal")).default;
-        sr().reveal(revealContainer.current, srConfig());
-        sr().reveal(revealContainer2.current, srConfig(400));
+      if (revealContainer.current && revealContainer2.current) {
+        const ScrollReveal = (await import("scrollreveal")).default;
+        ScrollReveal().reveal(revealContainer.current, srConfig());
+        ScrollReveal().reveal(revealContainer2.current, srConfig(300));
       }
     }
     animate();
   }, []);
+
   return (
-    <div id="contact" className={classes.contact}>
+    <div id="contact" className={styles.contact}>
       <Container>
         <Title reactRef={revealContainer}>Contact</Title>
-        <div className={classes.wrapper} ref={revealContainer2}>
-          <div className={classes.detail}>
+        <div className={styles.wrapper} ref={revealContainer2}>
+          <div className={styles.detail}>
             <Subtitle>Get in touch</Subtitle>
             <p>
               My inbox is always open. I am currently not looking for freelance
@@ -61,13 +64,13 @@ function Contact() {
               </Link>
             </div>
           </div>
-          <div className={classes.imgWrapper}>
+          <div className={styles.imgWrapper}>
             <img src="/static/m_chances.svg" alt="contact" />
           </div>
         </div>
       </Container>
     </div>
   );
-}
+};
 
 export default Contact;

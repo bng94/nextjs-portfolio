@@ -1,28 +1,28 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
-import Container from "../ui/Container";
-import Title from "../ui/Title";
-import classes from "./Experiences.module.scss";
-import { MONTHS_ABBREVIATIONS } from "../../utils/variables.js";
+import styles from "./Experiences.module.scss";
+import Container from "@components/ui/container";
+import Title from "@components/ui/title";
+import { MONTHS_ABBREVIATIONS } from "@utils/variables";
+import { srConfig } from "@utils/srConfig";
 import Link from "next/link";
-import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
-import { srConfig } from "../../utils/srConfig";
+import { Experience } from "types";
+import usePrefersReducedMotion from "@hooks/usePrefersReducedMotion";
 
-/**
- *
- * @param {Object} props
- * @param {Array<Object>} data
- * @returns
- */
-function Experiences(props) {
+interface ExperiencesProps {
+  experiencesData: Experience[];
+}
+
+const Experiences = ({ experiencesData }: ExperiencesProps) => {
   const [activeTab, setActiveTab] = useState(0);
-  const data = props.experiencesData.sort(
-    (a, b) => new Date(b.startDate) - new Date(a.startDate)
+  const data = experiencesData.sort(
+    (a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
   );
   const revealContainer = useRef(null);
   const revealContainer2 = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  const handleActiveTabClicked = (e, i) => {
+  const handleActiveTabClicked = (i: number) => {
     setActiveTab(i);
   };
 
@@ -32,47 +32,47 @@ function Experiences(props) {
       return;
     }
     async function animate() {
-      if (revealContainer.current) {
-        const sr = (await import("scrollreveal")).default;
-        sr().reveal(revealContainer.current, srConfig());
-        sr().reveal(revealContainer2.current, srConfig(350));
+      if (revealContainer.current && revealContainer2.current) {
+        const ScrollReveal = (await import("scrollreveal")).default;
+        ScrollReveal().reveal(revealContainer.current, srConfig());
+        ScrollReveal().reveal(revealContainer2.current, srConfig(300));
       }
     }
     animate();
   }, []);
 
   return (
-    <div id="experiences" className={classes.experiences}>
+    <div id="experiences" className={styles.experiences}>
       <Container>
         <Title reactRef={revealContainer}>Experiences</Title>
         <div>
-          <div className={classes.mainContainer} ref={revealContainer2}>
-            <div className={classes.tabsContainer}>
+          <div className={styles.mainContainer} ref={revealContainer2}>
+            <div className={styles.tabsContainer}>
               {data?.map((experience, i) => {
                 return (
                   <button
                     key={i}
                     tabIndex={i}
-                    className={`${classes.tabButton} ${
+                    className={`${styles.tabButton} ${
                       activeTab === i
-                        ? `${classes.tabButton} ${classes.activeButton}`
+                        ? `${styles.tabButton} ${styles.activeButton}`
                         : ""
                     }`}
-                    onClick={(e) => handleActiveTabClicked(e, i)}
+                    onClick={(e) => handleActiveTabClicked(i)}
                   >
                     <span>{experience.company}</span>
                   </button>
                 );
               })}
             </div>
-            <div className={classes.tabContentContainer}>
+            <div className={styles.tabContentContainer}>
               {data?.map((experience, i) => {
                 if (!experience.startDate) return;
 
                 const styleClasses =
                   activeTab === i
-                    ? `${classes.tabContent} ${classes.active}`
-                    : classes.tabContent;
+                    ? `${styles.tabContent} ${styles.active}`
+                    : styles.tabContent;
 
                 const startDate = new Date(experience.startDate);
                 const start_date =
@@ -93,7 +93,7 @@ function Experiences(props) {
                   <div className={styleClasses} key={i}>
                     <h3>
                       <span>{experience.title} </span> @{" "}
-                      <span className={classes.company}>
+                      <span className={styles.company}>
                         <Link
                           href={experience.url}
                           target="_blank"
@@ -103,7 +103,7 @@ function Experiences(props) {
                         </Link>
                       </span>
                     </h3>
-                    <p className={classes.range}>
+                    <p className={styles.range}>
                       {start_date !== end_date
                         ? `${start_date} - ${end_date}`
                         : start_date === end_date
@@ -126,6 +126,6 @@ function Experiences(props) {
       </Container>
     </div>
   );
-}
+};
 
 export default Experiences;

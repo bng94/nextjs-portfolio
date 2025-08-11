@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { FULL_NAME } from "../../utils/variables";
-import classes from "./Footer.module.scss";
+import styles from "./Footer.module.scss";
+import { FULL_NAME } from "@utils/variables";
 
-function Footer(props) {
+const Footer = () => {
   return (
-    <footer className={classes.footer}>
+    <footer className={styles.footer}>
       <Link href="https://github.com/bng94/nextjs-portfolio" target="_blank">
         <div>Developed using NextJS and MongoDB</div>
         <div>
@@ -13,6 +13,6 @@ function Footer(props) {
       </Link>
     </footer>
   );
-}
+};
 
 export default Footer;

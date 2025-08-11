@@ -1,21 +1,26 @@
-import Link from "next/link";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+"use client";
+import Container from "@components/ui/container";
+import styles from "./HeroSection.module.scss";
 import { TypeAnimation } from "react-type-animation";
 import {
-  GRADUATE_DEGREE,
-  LOCATION,
   FULL_NAME,
-  UNDERGRADUATE_DEGREE,
   GITHUB_URL,
+  GRADUATE_DEGREE,
   LINKEDIN_URL,
-} from "../../utils/variables";
-import Container from "../ui/Container";
-import classes from "./HeroSection.module.scss";
+  LOCATION,
+  UNDERGRADUATE_DEGREE,
+} from "@utils/variables";
+import Link from "next/link";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-function HeroSection({ role }) {
+interface HeroSectionProps {
+  role: string;
+}
+
+const HeroSection = ({ role }: HeroSectionProps) => {
   return (
     <>
-      <div className={classes.heroSection}>
+      <div className={styles.heroSection}>
         <Container>
           <h1>{FULL_NAME}</h1>
           <TypeAnimation
@@ -27,7 +32,7 @@ function HeroSection({ role }) {
               UNDERGRADUATE_DEGREE,
               1150,
             ]}
-            speed="55"
+            speed={55}
             wrapper="h2"
             cursor={true}
             repeat={Infinity}
@@ -36,7 +41,7 @@ function HeroSection({ role }) {
           <a href="#about">Learn More</a>
         </Container>
       </div>
-      <div className={classes.quickLinks}>
+      <div className={styles.quickLinks}>
         <Link href={GITHUB_URL} target="_blank">
           <FaGithub />
         </Link>
@@ -46,6 +51,6 @@ function HeroSection({ role }) {
       </div>
     </>
   );
-}
+};
 
 export default HeroSection;

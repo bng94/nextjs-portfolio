@@ -1,17 +1,22 @@
+"use client";
+import Container from "@components/ui/container";
+import styles from "./Projects.module.scss";
 import { useEffect, useRef } from "react";
-import { FaGithub, FaLink } from "react-icons/fa";
-import Link from "next/link";
-import Image from "next/image";
-import Container from "../ui/Container";
-import Subtitle from "../ui/Subtitle";
-import Title from "../ui/Title";
-import classes from "./Projects.module.scss";
-import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
+import usePrefersReducedMotion from "@hooks/usePrefersReducedMotion";
 import { srConfig } from "../../utils/srConfig";
+import Title from "@components/ui/title";
+import Link from "next/link";
+import Subtitle from "@components/ui/subtitle";
+import { FaGithub, FaLink } from "react-icons/fa";
+import { Project } from "types";
 
-function Projects(props) {
+interface ProjectsProps {
+  projects: Project[];
+}
+
+const Projects = ({ projects }: ProjectsProps) => {
   const revealContainer = useRef(null);
-  const revealProjects = useRef([]);
+  const revealProjects = useRef<Array<HTMLDivElement | null>>([]);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
@@ -20,43 +25,47 @@ function Projects(props) {
     }
     async function animate() {
       if (revealContainer.current) {
-        const sr = (await import("scrollreveal")).default;
-        sr().reveal(revealContainer.current, srConfig());
-        revealProjects.current.forEach((ref, i) =>
-          sr().reveal(ref, srConfig((i + 1) * 150))
-        );
+        const ScrollReveal = (await import("scrollreveal")).default;
+        ScrollReveal().reveal(revealContainer.current, srConfig());
+        revealProjects.current.forEach((ref, i) => {
+          if (ref) {
+            ScrollReveal().reveal(ref, srConfig((i + 1) * 150));
+          }
+        });
       }
     }
     animate();
   }, []);
   return (
-    <div id="projects" className={classes.projects}>
+    <div id="projects" className={styles.projects}>
       <Container>
         <Title reactRef={revealContainer}>Projects</Title>
-        {props.projects.map((project, i) => {
+        {projects.map((project, i) => {
           return (
             <div
               key={i}
-              className={classes.projectContainer}
-              ref={(el) => (revealProjects.current[i] = el)}
+              className={styles.projectContainer}
+              ref={(el) => {
+                revealProjects.current[i] = el;
+              }}
             >
               <Link
                 href={project.liveLink}
-                className={classes.imageContainer}
+                className={styles.imageContainer}
                 target="_blank"
                 rel="noreferrer"
               >
                 <img src={project.image} alt={project.title} />
               </Link>
-              <div className={classes.description}>
+              <div className={styles.description}>
                 <Subtitle>{project.title}</Subtitle>
-                <div className={classes.techTags}>
+                <div className={styles.techTags}>
                   {project.tags?.map((tag, i) => {
                     return <span key={i}>{tag}</span>;
                   })}
                 </div>
                 <p>{project.description}</p>
-                <div className={classes.link}>
+                <div className={styles.link}>
                   <Link
                     href={project.codeLink}
                     target="_blank"
@@ -81,6 +90,6 @@ function Projects(props) {
       </Container>
     </div>
   );
-}
+};
 
 export default Projects;
