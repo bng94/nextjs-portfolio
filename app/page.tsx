@@ -12,6 +12,9 @@ import axios from "axios";
 
 const Page = async () => {
   const response = await axios.get(`${SERVER_URL}/api/v1`);
+  if (response.status !== 200) {
+    throw new Error(`Server Error - Status code: ${response.status}`);
+  }
   const data = response.data.data;
 
   if (!data) {
