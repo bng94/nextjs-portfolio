@@ -2,7 +2,7 @@
 import Container from "@components/ui/container";
 import styles from "./Projects.module.scss";
 import { useEffect, useRef } from "react";
-import usePrefersReducedMotion from "hooks/usePrefersReducedMotion";
+import usePrefersReducedMotion from "@hooks/usePrefersReducedMotion";
 import { srConfig } from "../../utils/srConfig";
 import Title from "@components/ui/title";
 import Link from "next/link";

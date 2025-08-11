@@ -1,13 +1,13 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import styles from "./Experiences.module.scss";
-import usePrefersReducedMotion from "hooks/usePrefersReducedMotion";
 import Container from "@components/ui/container";
 import Title from "@components/ui/title";
 import { MONTHS_ABBREVIATIONS } from "@utils/variables";
 import { srConfig } from "@utils/srConfig";
 import Link from "next/link";
 import { Experience } from "types";
+import usePrefersReducedMotion from "@hooks/usePrefersReducedMotion";
 
 interface ExperiencesProps {
   experiencesData: Experience[];

@@ -34,8 +34,17 @@
       "@components/*": [
         "components/*"
       ],
+      "@hooks/*": [
+        "hooks/*"
+      ],
+      "@config/*": [
+        "config/*"
+      ],
       "@utils/*": [
         "utils/*"
+      ],
+      "@types/*": [
+        "types/*"
       ]
     }
   },

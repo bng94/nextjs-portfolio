@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import styles from "./About.module.scss";
-import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
+import usePrefersReducedMotion from "@hooks/usePrefersReducedMotion";
 import { srConfig } from "../../utils/srConfig";
 import Container from "@components/ui/container";
 import Subtitle from "@components/ui/subtitle";

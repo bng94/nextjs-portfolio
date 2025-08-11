@@ -1,25 +1,24 @@
 import { useState, useEffect } from "react";
 import { isRenderingOnServer, QUERY } from "../utils/variables";
 
-const getInitialState = () =>
-  // For our initial render, we won't know if the user
-  // prefers reduced motion, but it doesn't matter. This value
-  // will be overwritten on the client, before any animations
-  // occur.
+const getInitialState = (): boolean =>
   isRenderingOnServer ? true : !window.matchMedia(QUERY).matches;
-function usePrefersReducedMotion() {
+
+function usePrefersReducedMotion(): boolean {
   const [prefersReducedMotion, setPrefersReducedMotion] =
-    useState(getInitialState);
+    useState<boolean>(getInitialState);
+
   useEffect(() => {
     const mediaQueryList = window.matchMedia(QUERY);
-    const listener = (event) => {
+    const listener = (event: MediaQueryListEvent) => {
       setPrefersReducedMotion(!event.matches);
     };
-    mediaQueryList.addListener(listener);
+    mediaQueryList.addEventListener("change", listener);
     return () => {
-      mediaQueryList.removeListener(listener);
+      mediaQueryList.removeEventListener("change", listener);
     };
   }, []);
+
   return prefersReducedMotion;
 }
 

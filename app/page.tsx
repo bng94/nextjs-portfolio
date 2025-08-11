@@ -6,8 +6,8 @@ import Footer from "@components/layout/footer";
 import Header from "@components/layout/header";
 import Noteworthy from "@components/noteworthy/noteworthy";
 import Projects from "@components/projects/projects";
+import { SERVER_URL } from "@config/config";
 import React from "react";
-import { SERVER_URL } from "../config/config";
 import axios from "axios";
 
 const Page = async () => {
