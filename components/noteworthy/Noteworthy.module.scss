@@ -4,8 +4,9 @@
 }
 
 .noteworthyContainer {
-  display: grid;
-  grid-template-columns: repeat(4, 24%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .noteworthyProject {
@@ -15,10 +16,9 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  flex: 1;
+  flex: 1 1 calc(33.333% - 1rem);
+  max-width: calc(33.333% - 1rem);
   padding: 1.4rem;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
   transition: all 300ms ease-in-out;
   cursor: pointer;
 
@@ -65,20 +65,17 @@
   }
 }
 
-@media screen and (max-width: 1700px) {
-  .noteworthyContainer {
-    grid-template-columns: repeat(2, 50%);
+@media screen and (max-width: 1200px) {
+  .noteworthyProject {
+    flex: 1 1 calc(50% - 1rem); /* 2 per row */
+    max-width: calc(50% - 1rem);
   }
 }
 
 @media screen and (max-width: 768px) {
-  .noteworthyContainer {
-    grid-template-columns: auto;
-  }
-
   .noteworthyProject {
-    margin: 0 0 2rem 0;
-    width: 100%;
+    flex: 1 1 100%; /* 1 per row */
+    max-width: 100%;
   }
 }
 
@@ -86,7 +83,6 @@
   .noteworthyProject {
     h2 {
       font-size: 1.8rem;
-      margin: 1rem 0;
     }
     p {
       font-size: var(--smallerfs);

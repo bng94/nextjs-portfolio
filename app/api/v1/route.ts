@@ -17,6 +17,14 @@ export async function GET(request: NextRequest) {
   let client: MongoClient | null = null;
 
   try {
+    const requestUrl = new URL(request.url);
+    const host = request.headers.get("host");
+    const isSameOrigin = requestUrl.host === host;
+
+    if (!isSameOrigin) {
+      return NextResponse.redirect(new URL("/404", requestUrl.origin), 302);
+    }
+
     client = await connectToMongoDB();
     const db = client.db();
 
