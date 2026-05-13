@@ -7,7 +7,6 @@ import Header from "@components/layout/header";
 import Noteworthy from "@components/noteworthy/noteworthy";
 import Projects from "@components/projects/projects";
 import { SERVER_URL } from "@config/config";
-import React from "react";
 
 const getProfileData = async () => {
   const response = await fetch(`${SERVER_URL}/api/v1`, {
@@ -20,7 +19,6 @@ const getProfileData = async () => {
 
 const Page = async () => {
   const data = await getProfileData();
-
   if (!data) {
     throw new Error("Internal Server Error - No data available");
   }
