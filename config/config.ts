@@ -1,4 +1,3 @@
 const dev = process.env.NODE_ENV !== "production";
-export const SERVER_URL = dev
-  ? "http://localhost:3000"
-  : "https://ngbrandon.com";
+
+export const GITHUB_REPO_SLUG = dev ? "/nextjs-portfolio" : "/nextjs-portfolio";

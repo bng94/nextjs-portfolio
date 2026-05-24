@@ -6,22 +6,10 @@ import Footer from "@components/layout/footer";
 import Header from "@components/layout/header";
 import Noteworthy from "@components/noteworthy/noteworthy";
 import Projects from "@components/projects/projects";
-import { SERVER_URL } from "@config/config";
-
-const getProfileData = async () => {
-  const response = await fetch(`${SERVER_URL}/api/v1`, {
-    next: { revalidate: 60 },
-  });
-  const res = await response.json();
-
-  return res.data;
-};
+import PORTFOLIO from "@config/data";
 
 const Page = async () => {
-  const data = await getProfileData();
-  if (!data) {
-    throw new Error("Internal Server Error - No data available");
-  }
+  const data = PORTFOLIO.data;
 
   return (
     <div>

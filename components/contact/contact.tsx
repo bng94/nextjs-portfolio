@@ -10,6 +10,8 @@ import Container from "@components/ui/container";
 import Title from "@components/ui/title";
 import { srConfig } from "@utils/srConfig";
 import usePrefersReducedMotion from "hooks/usePrefersReducedMotion";
+import Image from "next/image";
+import { GITHUB_REPO_SLUG } from "@config/config";
 
 const Contact = () => {
   const revealContainer = useRef(null);
@@ -65,7 +67,12 @@ const Contact = () => {
             </div>
           </div>
           <div className={styles.imgWrapper}>
-            <img src="/static/m_chances.svg" alt="contact" />
+            <Image
+              src={GITHUB_REPO_SLUG + "/static/m_chances.svg"}
+              alt="contact"
+              width={500}
+              height={500}
+            />
           </div>
         </div>
       </Container>

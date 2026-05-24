@@ -9,6 +9,8 @@ import Link from "next/link";
 import Subtitle from "@components/ui/subtitle";
 import { FaGithub, FaLink } from "react-icons/fa";
 import { Project } from "types";
+import { GITHUB_REPO_SLUG } from "@config/config";
+import Image from "next/image";
 
 interface ProjectsProps {
   projects: Project[];
@@ -55,7 +57,12 @@ const Projects = ({ projects }: ProjectsProps) => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <img src={project.image} alt={project.title} />
+                <Image
+                  src={GITHUB_REPO_SLUG + project.image}
+                  alt={project.title}
+                  width={500}
+                  height={300}
+                />
               </Link>
               <div className={styles.description}>
                 <Subtitle>{project.title}</Subtitle>
