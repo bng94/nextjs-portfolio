@@ -15,8 +15,9 @@ interface ExperiencesProps {
 
 const Experiences = ({ experiencesData }: ExperiencesProps) => {
   const [activeTab, setActiveTab] = useState(0);
+  const [selectOpen, setSelectOpen] = useState(false);
   const data = experiencesData.sort(
-    (a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
+    (a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime(),
   );
   const revealContainer = useRef(null);
   const revealContainer2 = useRef(null);
@@ -26,6 +27,14 @@ const Experiences = ({ experiencesData }: ExperiencesProps) => {
     setActiveTab(i);
   };
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 600);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
   useEffect(() => {
     setActiveTab(0);
     if (prefersReducedMotion) {
@@ -47,24 +56,47 @@ const Experiences = ({ experiencesData }: ExperiencesProps) => {
         <Title reactRef={revealContainer}>Experiences</Title>
         <div>
           <div className={styles.mainContainer} ref={revealContainer2}>
-            <div className={styles.tabsContainer}>
-              {data?.map((experience, i) => {
-                return (
-                  <button
-                    key={i}
-                    tabIndex={i}
-                    className={`${styles.tabButton} ${
-                      activeTab === i
-                        ? `${styles.tabButton} ${styles.activeButton}`
-                        : ""
-                    }`}
-                    onClick={(e) => handleActiveTabClicked(i)}
-                  >
-                    <span>{experience.company}</span>
-                  </button>
-                );
-              })}
-            </div>
+            {isMobile ? (
+              <div className={styles.mobileSelectWrapper}>
+                <select
+                  className={styles.mobileSelect}
+                  onChange={(e) =>
+                    handleActiveTabClicked(Number(e.target.value))
+                  }
+                  value={activeTab}
+                  onFocus={() => setSelectOpen(true)}
+                  onBlur={() => setSelectOpen(false)}
+                >
+                  {data?.map((experience, i) => (
+                    <option key={i} value={i}>
+                      {experience.title} @ {experience.company}
+                    </option>
+                  ))}
+                </select>
+                <span className={styles.selectArrow}>
+                  {selectOpen ? "▲" : "▼"}
+                </span>
+              </div>
+            ) : (
+              <div className={styles.tabsContainer}>
+                {data?.map((experience, i) => {
+                  return (
+                    <button
+                      key={i}
+                      tabIndex={i}
+                      className={`${styles.tabButton} ${
+                        activeTab === i
+                          ? `${styles.tabButton} ${styles.activeButton}`
+                          : ""
+                      }`}
+                      onClick={(e) => handleActiveTabClicked(i)}
+                    >
+                      <span>{experience.company}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
             <div className={styles.tabContentContainer}>
               {data?.map((experience, i) => {
                 if (!experience.startDate) return;
@@ -107,8 +139,8 @@ const Experiences = ({ experiencesData }: ExperiencesProps) => {
                       {start_date !== end_date
                         ? `${start_date} - ${end_date}`
                         : start_date === end_date
-                        ? start_date
-                        : end_date}
+                          ? start_date
+                          : end_date}
                     </p>
                     <div>
                       <ul>

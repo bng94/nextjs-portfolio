@@ -7,6 +7,8 @@ import Container from "@components/ui/container";
 import Subtitle from "@components/ui/subtitle";
 import { FULL_NAME } from "@utils/variables";
 import Title from "@components/ui/title";
+import Image from "next/image";
+import { GITHUB_REPO_SLUG } from "@config/config";
 
 interface AboutProps {
   src: string;
@@ -40,7 +42,12 @@ const About = ({ src, aboutInfo, technologies }: AboutProps) => {
         </div>
         <div className={styles.aboutContainer} ref={revealContainer2}>
           <div className={styles.imgContainer}>
-            <img src={src} alt={FULL_NAME} />
+            <Image
+              src={GITHUB_REPO_SLUG + src}
+              alt={FULL_NAME}
+              width={300}
+              height={300}
+            />
           </div>
           <div>
             {aboutInfo?.map((data, i) => {

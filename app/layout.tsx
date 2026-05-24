@@ -1,7 +1,6 @@
 // app/layout.tsx
 import "./globals.css";
 import { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/react";
 import { FULL_NAME } from "../utils/variables";
 
 export const metadata: Metadata = {
@@ -9,13 +8,13 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "Brandon Bing Ng",
-      url: "https://www.ngbrandon.com",
+      url: "https://bng94.github.io/nextjs-portfolio/",
     },
   ],
   description:
     "Brandon Bing Ng is a software engineer with a Master of Science Degree in Software Engineering and a Bachelor of Science degree in Computer Science who specializes in developing websites.",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/nextjs-portfolio/favicon.ico",
   },
 };
 
@@ -25,10 +24,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <head />
-      <body>
-        {children}
-        <Analytics />
-      </body>
+      <body>{children}</body>
     </html>
   );
 };

@@ -96,6 +96,30 @@
     outline: 0;
   }
 }
+.mobileSelectWrapper {
+  display: none;
+  position: relative;
+  margin-bottom: 20px;
+}
+.mobileSelect {
+  width: 100%;
+  padding: 10px 36px 10px 12px;
+  font-size: var(--fs);
+  background-color: var(--darkBlue);
+  color: var(--white);
+  border: 1px solid var(--skyBlue);
+  border-radius: 4px;
+  appearance: none;
+}
+.selectArrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--skyBlue);
+  pointer-events: none;
+  font-size: 10px;
+}
 
 .activeButton {
   background-color: var(--darkBlue);
@@ -123,30 +147,10 @@
     display: block;
   }
   .tabsContainer {
-    display: flex;
-    overflow-x: auto;
-    width: calc(100% + 100px);
-    padding-left: 50px;
-    margin-left: -50px;
-    margin-bottom: 30px;
-    li {
-      &:first-of-type {
-        margin-left: 50px;
-      }
-      &:last-of-type {
-        padding-right: 50px;
-      }
-    }
+    display: none;
   }
-  .tabButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 120px;
-    padding: 0 15px;
-    border-left: 0;
-    border-bottom: 2px solid #123;
-    text-align: center;
+  .mobileSelectWrapper {
+    display: block;
   }
   .tabContentContainer {
     margin-left: 0;
