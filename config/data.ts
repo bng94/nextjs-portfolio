@@ -165,15 +165,6 @@ const PORTFOLIO = {
         codeLink: "https://github.com/bng94/heroku-bot",
         liveLink: "https://github.com/bng94/heroku-bot",
       },
-      {
-        _id: "n4",
-        title: "Image Editing",
-        description:
-          "An ReactJS Image Editing App, to crop, resize and change background of an image. ",
-        tags: ["ReactJS", "React-Cropper", "Canvas"],
-        codeLink: "https://bng94.github.io/imageediting/",
-        liveLink: "https://github.com/bng94/imageediting",
-      },
     ],
   },
 };
